@@ -7,7 +7,4 @@
 
 #include "pixel.h"
 
-typedef struct Pixel {
-} Pixel;
-
 #endif //NONOGRAMME_PIXEL_H

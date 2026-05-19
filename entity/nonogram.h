@@ -14,8 +14,8 @@ typedef struct Nonogram {
 
 Nonogram *createNonogram(unsigned char width, unsigned char height);
 void deleteNonogram(Nonogram *nonogram);
-void nonogramAddRowConstraint(Nonogram *nonogram, unsigned char rowIndex, unsigned char adjacentBlack);
-void nonogramAddColumnConstraint(Nonogram *nonogram, unsigned char columnIndex, unsigned char adjacentBlack);
+void nonogramAddRowConstraint(Nonogram *nonogram, unsigned char rowIndex, Constraint constraint);
+void nonogramAddColumnConstraint(Nonogram *nonogram, unsigned char columnIndex, Constraint constraint);
 unsigned char nonogramGetWidth(Nonogram *nonogram);
 unsigned char nonogramGetHeight(Nonogram *nonogram);
 void nonogramToggleXY(Nonogram *nonogram, unsigned char x, unsigned char y);
