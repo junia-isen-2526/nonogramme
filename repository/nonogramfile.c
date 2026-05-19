@@ -64,5 +64,45 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 }
 
 int saveNonogramToFile(const char *filename, Nonogram *nonogram) {
+	if ((filename == NULL) || (nonogram == NULL)) return -1;
+	FILE *file = fopen(filename, "w");
+	if (file == NULL) return -1;
+	fprintf(file, "%d %d\n", nonogram->dimension->height, nonogram->dimension->width);
+
+	unsigned char *constraintsArray;
+	unsigned char constraintsSize;
+
+	fprintf(file, "ROWS\n");
+	for (unsigned char row = 0; row < nonogram->dimension->height; row++) {
+		constraintsArray = nonogramRowsConstraintsToArray(nonogram, row);
+		constraintsSize = nonogramRowsConstraintsGetSize(nonogram, row);
+		for (unsigned char constraintIndex = 0; constraintIndex < constraintsSize; constraintIndex++) {
+			fprintf(file, "%d", constraintsArray[constraintIndex]);
+			if (constraintIndex < constraintsSize - 1) fprintf(file, ";");
+		}
+		fprintf(file, "\n");
+		free(constraintsArray);
+	}
+
+	fprintf(file, "COLS\n");
+	for (unsigned char column = 0; column < nonogram->dimension->width; column++) {
+		constraintsArray = nonogramColumnsConstraintsToArray(nonogram, column);
+		constraintsSize = nonogramColumnsConstraintsGetSize(nonogram, column);
+		for (unsigned char constraintIndex = 0; constraintIndex < constraintsSize; constraintIndex++) {
+			fprintf(file, "%d", constraintsArray[constraintIndex]);
+			if (constraintIndex < constraintsSize - 1) fprintf(file, ";");
+		}
+		fprintf(file, "\n");
+		free(constraintsArray);
+	}
+
+	fprintf(file, "GRID\n");
+	for (unsigned char row = 0; row < nonogram->dimension->height; row++) {
+		for (unsigned char column = 0; column < nonogram->dimension->width; column++) {
+			fprintf(file, "%d", nonogramGetXY(nonogram, column, row) == BLACK ? 1 : 0);
+		}
+		fprintf(file, "\n");
+	}
+	fclose(file);
 	return 0;
 }

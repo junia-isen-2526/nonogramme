@@ -12,5 +12,7 @@ int main(void) {
         }
         printf("\n");
     }
+    saveNonogramToFile("../doc/jad_saved.nono", nonogram);
+
     return 0;
 }
