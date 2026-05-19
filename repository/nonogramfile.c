@@ -59,7 +59,6 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 			}
 		}
 	}
-
 	fclose(file);
 	return nonogram;
 }
