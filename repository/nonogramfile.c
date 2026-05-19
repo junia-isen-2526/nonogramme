@@ -50,6 +50,16 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 		}
 	}
 
+	fgets(buffer, sizeof(buffer), file);
+	for (unsigned char row = 0; row < nonogram->dimension->height; row++) {
+		fgets(buffer, sizeof(buffer), file);
+		for (unsigned char column = 0; column < nonogram->dimension->width; column++) {
+			if (buffer[column] == '1') {
+				nonogramToggleXY(nonogram, column, row);
+			}
+		}
+	}
+
 	fclose(file);
 	return nonogram;
 }
