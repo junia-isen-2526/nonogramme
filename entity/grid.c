@@ -4,16 +4,17 @@
 
 #include "grid-internal.h"
 
-Grid *createGrid(const Dimension *dimension) {
+Grid createGrid(const Dimension *dimension) {
 	if (dimension == NULL) return NULL;
-	Grid *grid = malloc(sizeof(Pixel *) * dimension->height);
+	Grid grid = malloc(sizeof(Pixel *) * dimension->height);
 	if (grid == NULL) return NULL;
 	for (unsigned char row = 0; row < dimension->height; row++) {
-		grid[row] = malloc(sizeof(Pixel) * dimension->width);
-		if (grid[row] != NULL) {
-			for (unsigned char column = 0; column < row; column++) {
-				(*grid)[row][column] = WHITE;
+		Pixel *rowPixels = malloc(sizeof(Pixel) * dimension->width);
+		if (rowPixels != NULL) {
+			for (unsigned char column = 0; column < dimension->width; column++) {
+				rowPixels[column] = WHITE;
 			}
+			grid[row] = rowPixels;
 		} else {
 			for (unsigned char i = 0; i < row; i++) {
 				free(grid[i]);
@@ -25,7 +26,7 @@ Grid *createGrid(const Dimension *dimension) {
 	return grid;
 }
 
-void deleteGrid(Grid *grid, const Dimension *dimension) {
+void deleteGrid(Grid grid, const Dimension *dimension) {
 	if ((grid != NULL) && (dimension != NULL)) {
 		for (unsigned char row = 0; row < dimension->height; row++) {
 			free(grid[row]);
@@ -34,14 +35,14 @@ void deleteGrid(Grid *grid, const Dimension *dimension) {
 	}
 }
 
-void gridToggleXY(const Grid *grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
+void gridToggleXY(Grid grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
 	if ((grid != NULL) && (x < dimension->width) && (y < dimension->height)) {
-		(*grid)[y][x] = ((*grid)[y][x] == BLACK) ? WHITE : BLACK;
+		grid[y][x] = (grid[y][x] == BLACK) ? WHITE : BLACK;
 	}
 }
-Pixel gridGetXY(const Grid *grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
+Pixel gridGetXY(Grid grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
 	if ((grid != NULL) && (x < dimension->width) && (y < dimension->height)) {
-		return (*grid)[y][x];
+		return grid[y][x];
 	}
 	return WHITE;
 }
