@@ -7,7 +7,7 @@
 #include "constraints-internal.h"
 #include "grid-internal.h"
 
-Nonogram *createNonogram(unsigned char width, unsigned char height) {
+Nonogram *createNonogram(const unsigned char width, const unsigned char height) {
 	Dimension *dimension = createDimension(width, height);
 	Grid *grid = createGrid(dimension);
 	Constraints *rowConstraints = createConstraints();
@@ -40,59 +40,59 @@ void deleteNonogram(Nonogram *nonogram) {
 	}
 }
 
-void nonogramAddRowConstraint(Nonogram *nonogram, unsigned char rowIndex, Constraint constraint) {
+void nonogramAddRowConstraint(const Nonogram *nonogram, const unsigned char rowIndex, const Constraint constraint) {
 	if ((nonogram != NULL) && (rowIndex < nonogram->dimension->height)) {
 		ConstraintsAddConstraints(nonogram->rowConstraints, constraint);
 	}
 }
 
-void nonogramAddColumnConstraint(Nonogram *nonogram, unsigned char columnIndex, Constraint constraint) {
+void nonogramAddColumnConstraint(const Nonogram *nonogram, const unsigned char columnIndex, const Constraint constraint) {
 	if ((nonogram != NULL) && (columnIndex < nonogram->dimension->width)) {
 		ConstraintsAddConstraints(nonogram->columnConstraints, constraint);
 	}
 }
 
-unsigned char nonogramGetWidth(Nonogram *nonogram) {
+unsigned char nonogramGetWidth(const Nonogram *nonogram) {
 	if (nonogram != NULL) return nonogram->dimension->width;
 	return 0;
 }
 
-unsigned char nonogramGetHeight(Nonogram *nonogram) {
+unsigned char nonogramGetHeight(const Nonogram *nonogram) {
 	if (nonogram != NULL) return nonogram->dimension->height;
 	return 0;
 }
 
-void nonogramToggleXY(Nonogram *nonogram, const unsigned char x, const unsigned char y) {
+void nonogramToggleXY(const Nonogram *nonogram, const unsigned char x, const unsigned char y) {
 	if (nonogram != NULL) gridToggleXY(nonogram->grid, x, y, nonogram->dimension);
 }
 
-Pixel nonogramGetXY(Nonogram *nonogram, const unsigned char x, const unsigned char y) {
+Pixel nonogramGetXY(const Nonogram *nonogram, const unsigned char x, const unsigned char y) {
 	if (nonogram != NULL) return gridGetXY(nonogram->grid, x, y, nonogram->dimension);
 	return WHITE;
 }
 
-unsigned char nonogramRowsConstraintsGetSize(Nonogram *nonogram, const unsigned char rowIndex) {
+unsigned char nonogramRowsConstraintsGetSize(const Nonogram *nonogram, const unsigned char rowIndex) {
 	if ((nonogram != NULL) && (rowIndex < nonogram->dimension->height)) {
 		return constraintsGetSize(nonogram->rowConstraints);
 	}
 	return 0;
 }
 
-unsigned char nonogramColumnsConstraintsGetSize(Nonogram *nonogram, const unsigned char columnIndex) {
+unsigned char nonogramColumnsConstraintsGetSize(const Nonogram *nonogram, const unsigned char columnIndex) {
 	if ((nonogram != NULL) && (columnIndex < nonogram->dimension->width)) {
 		return constraintsGetSize(nonogram->columnConstraints);
 	}
 	return 0;
 }
 
-unsigned char *nonogramRowsConstraintsToArray(Nonogram *nonogram, const unsigned char rowIndex) {
+unsigned char *nonogramRowsConstraintsToArray(const Nonogram *nonogram, const unsigned char rowIndex) {
 	if ((nonogram != NULL) && (rowIndex < nonogram->dimension->height)) {
 		return constraintsToArray(nonogram->rowConstraints);
 	}
 	return NULL;
 }
 
-unsigned char *nonogramColumnsConstraintsToArray(Nonogram *nonogram, const unsigned char columnIndex) {
+unsigned char *nonogramColumnsConstraintsToArray(const Nonogram *nonogram, const unsigned char columnIndex) {
 	if ((nonogram != NULL) && (columnIndex < nonogram->dimension->width)) {
 		return constraintsToArray(nonogram->columnConstraints);
 	}
