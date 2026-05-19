@@ -5,6 +5,7 @@
 #ifndef NONOGRAMME_DIMENSION_INTERNAL_H
 #define NONOGRAMME_DIMENSION_INTERNAL_H
 #include "dimension.h"
+#include "stdlib.h"
 
 Dimension *createDimension(unsigned char width, unsigned char height);
 void deleteDimension(Dimension *dimension);

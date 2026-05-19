@@ -6,10 +6,11 @@
 #define NONOGRAMME_GRID_INTERNAL_H
 
 #include "grid.h"
+#include "stdlib.h"
 
-Grid *createGrid(Dimension *dimension);
-void deleteGrid(Grid *grid);
-void gridToggleXY(Grid *grid, unsigned char x, unsigned char y);
-Pixel gridGetXY(Grid *grid, unsigned char x, unsigned char y);
+Grid *createGrid(const Dimension *dimension);
+void deleteGrid(Grid *grid, const Dimension *dimension);
+void gridToggleXY(const Grid *grid, unsigned char x, unsigned char y, const Dimension *dimension);
+Pixel gridGetXY(const Grid *grid, unsigned char x, unsigned char y, const Dimension *dimension);
 
 #endif //NONOGRAMME_GRID_H
