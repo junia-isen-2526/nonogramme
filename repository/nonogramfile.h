@@ -12,6 +12,6 @@
 
 Nonogram *loadNonogramFromFile(const char *filename);
 
-int saveNonogramToFile(const char *filename, Nonogram *nonogram);
+int saveNonogramToFile(const char *filename, const Nonogram *nonogram);
 
 #endif //NONOGRAMME_NONOGRAMMEFILE_H

@@ -27,7 +27,7 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 	fgets(buffer, sizeof(buffer), file);
 	for (unsigned char row = 0; row < nonogram->dimension->height; row++) {
 		fgets(buffer, sizeof(buffer), file);
-		char *constraintText = strtok(buffer, ";");
+		const char *constraintText = strtok(buffer, ";");
 		while (constraintText != NULL) {
 			int constraintValue;
 			if (sscanf_s(constraintText, "%d", &constraintValue, sizeof(int) == 1)) {
@@ -40,7 +40,7 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 	fgets(buffer, sizeof(buffer), file);
 	for (unsigned char column = 0; column < nonogram->dimension->width; column++) {
 		fgets(buffer, sizeof(buffer), file);
-		char *constraintText = strtok(buffer, ";");
+		const char *constraintText = strtok(buffer, ";");
 		while (constraintText != NULL) {
 			int constraintValue;
 			if (sscanf_s(constraintText, "%d", &constraintValue, sizeof(int) == 1)) {
@@ -63,7 +63,7 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 	return nonogram;
 }
 
-int saveNonogramToFile(const char *filename, Nonogram *nonogram) {
+int saveNonogramToFile(const char *filename, const Nonogram *nonogram) {
 	if ((filename == NULL) || (nonogram == NULL)) return -1;
 	FILE *file = fopen(filename, "w");
 	if (file == NULL) return -1;
