@@ -4,7 +4,6 @@
 
 #ifndef NONOGRAMME_CONSTRAINT_H
 #define NONOGRAMME_CONSTRAINT_H
-typedef struct Constraint {
-} Constraint;
+typedef unsigned char Constraint;
 #endif //NONOGRAMME_CONSTRAINT_H
 
