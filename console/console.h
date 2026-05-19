@@ -1,0 +1,8 @@
+//
+// Created by JAD on 18/05/2026.
+//
+
+#ifndef NONOGRAMME_CONSOLE_H
+#define NONOGRAMME_CONSOLE_H
+
+#endif //NONOGRAMME_CONSOLE_H

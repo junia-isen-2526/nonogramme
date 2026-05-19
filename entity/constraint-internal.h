@@ -1,0 +1,9 @@
+//
+// Created by JAD on 19/05/2026.
+//
+
+#ifndef NONOGRAMME_CONSTRAINT_INTERNAL_H
+#define NONOGRAMME_CONSTRAINT_INTERNAL_H
+#include "constraint.h"
+
+#endif //NONOGRAMME_CONSTRAINT_INTERNAL_H

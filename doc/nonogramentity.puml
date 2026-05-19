@@ -1,0 +1,73 @@
+@startuml
+struct Dimension {
+    unsigned char width
+    unsigned char height
+
+    - Dimension* createDimension(unsigned char width, unsigned char height)
+    - void deleteDimension(Dimension* dimension)
+}
+
+stereotype Constraint {
+    unsigned char adjacentBlack
+}
+
+struct ConstraintCell {
+    Constraint constraint
+    ConstraintCell* next
+
+    - ConstraintCell* createConstraintCell(char adjacentBlack)
+    - void deleteConstraintCell(ConstraintCell* cell)
+}
+
+struct Constraints {
+    ConstraintCell* head
+
+    - Constraints* createConstraints()
+    - void deleteConstraints(Constraints* constraints)
+    - void constraintsAddConstraint(Constraints* constraints, char adjacentBlack)
+    - unsigned char constraintsGetSize(Constraints* constraints)
+    - unsigned char* constraintsToArray(Constraints* constraints)
+}
+
+enum Pixel {
+    BLACK
+    WHITE
+}
+
+struct Grid {
+    Pixel** pixels
+    - Grid* createGrid(Dimension* dimension)
+    - void deleteGrid(Grid* grid)
+    - void gridToggleXY(Grid* grid, unsigned char x, unsigned char y)
+    - Pixel gridGetXY(Grid* grid, unsigned char x, unsigned char y)
+}
+
+struct Nonogram {
+    Dimension dimension
+    Constraints* rows
+    Constraints* columns
+    Grid grid
+    + Nonogram* createNonogram(unsigned char width, unsigned char height)
+    + void deleteNonogram(Nonogram* nonogram)
+    + void nonogramAddRowConstraint(Nonogram* nonogram, unsigned char index, unsigned char adjacentBlack)
+    + void nonogramAddColumnConstraint(Nonogram* nonogram, unsigned char index, unsigned char adjacentBlack)
+    + unsigned char nonogramGetWidth(Nonogram* nonogram)
+    + unsigned char nonogramGetHeight(Nonogram* nonogram)
+    + void nonogramToggleXY(Nonogram* nonogram, unsigned char x, unsigned char y)
+    + Pixel nonogramGetXY(Nonogram* nonogram, unsigned char x, unsigned char y)
+    + unsigned char nonogramRowsConstraintsGetSize(Nonogram* nonogram, unsigned char rowIndex)
+    + unsigned char nonogramColumnsConstraintsGetSize(Nonogram* nonogram, unsigned char columnIndex)
+    + unsigned char* nonogramRowsConstraintsToArray(Nonogram* nonogram, unsigned char rowIndex)
+    + unsigned char* nonogramColumnsConstraintsToArray(Nonogram* nonogram, unsigned char columnIndex)
+}
+Nonogram *--> Dimension
+Nonogram o--> "2" Constraints
+Nonogram *--> Grid
+
+Constraints o--> ConstraintCell
+
+ConstraintCell *--> Constraint
+ConstraintCell o--> ConstraintCell
+
+Grid *--> "width*height" Pixel
+@enduml
