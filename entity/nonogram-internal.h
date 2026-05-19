@@ -1,0 +1,10 @@
+//
+// Created by JAD on 18/05/2026.
+//
+
+#ifndef NONOGRAMME_NONOGRAMME_INTERNAL_H
+#define NONOGRAMME_NONOGRAMME_INTERNAL_H
+
+#include "nonogram.h"
+
+#endif //NONOGRAMME_NONOGRAMME_H
