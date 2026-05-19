@@ -5,7 +5,9 @@
 #ifndef NONOGRAMME_PIXEL_H
 #define NONOGRAMME_PIXEL_H
 
-typedef struct Pixel {
+typedef enum Pixel {
+	BLACK,
+	WHITE
 } Pixel;
 
 #endif //NONOGRAMME_PIXEL_H

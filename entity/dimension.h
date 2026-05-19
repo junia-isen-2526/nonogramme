@@ -6,6 +6,8 @@
 #define NONOGRAMME_DIMENSION_H
 
 typedef struct Dimension {
+	unsigned char width;
+	unsigned char height;
 } Dimension;
 
 #endif //NONOGRAMME_DIMENSION_H

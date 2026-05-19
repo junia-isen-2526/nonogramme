@@ -8,7 +8,6 @@
 #include "pixel.h"
 #include "dimension.h"
 
-typedef struct Grid {
-} Grid;
+typedef Pixel **Grid;
 
 #endif //NONOGRAMME_GRID_H

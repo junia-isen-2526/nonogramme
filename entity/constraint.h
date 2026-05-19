@@ -7,3 +7,4 @@
 typedef struct Constraint {
 } Constraint;
 #endif //NONOGRAMME_CONSTRAINT_H
+
