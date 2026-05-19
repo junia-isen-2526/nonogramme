@@ -11,9 +11,9 @@
 
 typedef struct Nonogram {
 	Dimension *dimension;
-	Grid *grid;
-	Constraints *rowConstraints;
-	Constraints *columnConstraints;
+	Grid grid;
+	Constraints **rowConstraints;
+	Constraints **columnConstraints;
 } Nonogram;
 
 Nonogram *createNonogram(unsigned char width, unsigned char height);
