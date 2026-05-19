@@ -10,6 +10,10 @@
 #include "grid.h"
 
 typedef struct Nonogram {
+	Dimension *dimension;
+	Grid *grid;
+	Constraints *rowConstraints;
+	Constraints *columnConstraints;
 } Nonogram;
 
 Nonogram *createNonogram(unsigned char width, unsigned char height);
@@ -18,11 +22,11 @@ void nonogramAddRowConstraint(Nonogram *nonogram, unsigned char rowIndex, Constr
 void nonogramAddColumnConstraint(Nonogram *nonogram, unsigned char columnIndex, Constraint constraint);
 unsigned char nonogramGetWidth(Nonogram *nonogram);
 unsigned char nonogramGetHeight(Nonogram *nonogram);
-void nonogramToggleXY(Nonogram *nonogram, unsigned char x, unsigned char y);
-Pixel nonogramGetXY(Nonogram *nonogram, unsigned char x, unsigned char y);
-unsigned char nonogramRowsConstraintsGetSize(Nonogram *nonogram, unsigned char rowIndex);
-unsigned char nonogramColumnsConstraintsGetSize(Nonogram *nonogram, unsigned char columnIndex);
-unsigned char *nonogramRowsConstraintsToArray(Nonogram *nonogram, unsigned char rowIndex);
-unsigned char *nonogramColumnsConstraintsToArray(Nonogram *nonogram, unsigned char columnIndex);
+void nonogramToggleXY(Nonogram *nonogram, const unsigned char x, const unsigned char y);
+Pixel nonogramGetXY(Nonogram *nonogram, const unsigned char x, const unsigned char y);
+unsigned char nonogramRowsConstraintsGetSize(Nonogram *nonogram, const unsigned char rowIndex);
+unsigned char nonogramColumnsConstraintsGetSize(Nonogram *nonogram, const unsigned char columnIndex);
+unsigned char *nonogramRowsConstraintsToArray(Nonogram *nonogram, const unsigned char rowIndex);
+unsigned char *nonogramColumnsConstraintsToArray(Nonogram *nonogram, const unsigned char columnIndex);
 
 #endif //NONOGRAMME_NONOGRAMME_H

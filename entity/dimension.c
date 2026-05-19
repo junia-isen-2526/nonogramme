@@ -4,7 +4,7 @@
 
 #include "dimension-internal.h"
 
-Dimension *createDimension(unsigned char width, unsigned char height) {
+Dimension *createDimension(const unsigned char width, const unsigned char height) {
 	Dimension *dimension = malloc(sizeof(Dimension));
 	if (dimension == NULL) return NULL;
 	dimension->width = width;

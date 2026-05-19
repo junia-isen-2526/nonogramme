@@ -34,12 +34,12 @@ void deleteGrid(Grid *grid, const Dimension *dimension) {
 	}
 }
 
-void gridToggleXY(const Grid *grid, unsigned char x, unsigned char y, const Dimension *dimension) {
+void gridToggleXY(const Grid *grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
 	if ((grid != NULL) && (x < dimension->width) && (y < dimension->height)) {
 		(*grid)[y][x] = ((*grid)[y][x] == BLACK) ? WHITE : BLACK;
 	}
 }
-Pixel gridGetXY(const Grid *grid, unsigned char x, unsigned char y, const Dimension *dimension) {
+Pixel gridGetXY(const Grid *grid, const unsigned char x, const unsigned char y, const Dimension *dimension) {
 	if ((grid != NULL) && (x < dimension->width) && (y < dimension->height)) {
 		return (*grid)[y][x];
 	}

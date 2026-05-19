@@ -4,7 +4,7 @@
 
 #include "constraints-internal.h"
 
-ConstraintCell *createConstraintCell(Constraint constraint) {
+ConstraintCell *createConstraintCell(const Constraint constraint) {
 	ConstraintCell *constraintCell = malloc(sizeof(ConstraintCell));
 	if (constraintCell == NULL) return NULL;
 	constraintCell->constraint = constraint;
@@ -35,7 +35,7 @@ void deleteConstraints(Constraints *constraints) {
 	}
 }
 
-void ConstraintsAddConstraints(Constraints *contraints, Constraint constraint) {
+void ConstraintsAddConstraints(Constraints *contraints, const Constraint constraint) {
 	if (contraints != NULL) {
 		if (contraints->head == NULL) {
 			contraints->head = createConstraintCell(constraint);
@@ -60,7 +60,7 @@ unsigned char constraintsGetSize(const Constraints *constraints) {
 
 unsigned char *constraintsToArray(const Constraints *constraints) {
 	if (constraints != NULL) {
-		unsigned char size = constraintsGetSize(constraints);
+		const unsigned char size = constraintsGetSize(constraints);
 		unsigned char *array = malloc(sizeof(unsigned char) * size);
 		if (array != NULL) {
 			unsigned char index = 0;

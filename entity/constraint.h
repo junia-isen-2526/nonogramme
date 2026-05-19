@@ -4,6 +4,8 @@
 
 #ifndef NONOGRAMME_CONSTRAINT_H
 #define NONOGRAMME_CONSTRAINT_H
+
 typedef unsigned char Constraint;
+
 #endif //NONOGRAMME_CONSTRAINT_H
 
