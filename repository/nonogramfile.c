@@ -13,7 +13,7 @@ Nonogram *loadNonogramFromFile(const char *filename) {
 	if (fgets(buffer, sizeof(buffer), file) != NULL) {
 		int rows, columns;
 		if (sscanf_s(buffer, "%d %d", &rows, &columns, sizeof(int) * 2 == 2)) {
-			nonogram = createNonogram(rows, columns);
+			nonogram = createNonogram(columns, rows);
 		}
 	} else {
 		fclose(file);
