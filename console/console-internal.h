@@ -6,6 +6,8 @@
 #define NONOGRAMME_CONSOLE_INTERNAL_H
 
 #include "console.h"
+#define CHARACTER_BLACK 219
+#define CHARACTER_WHITE ' '
 
 void displayError(const char *message);
 
