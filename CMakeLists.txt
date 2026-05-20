@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 11)
 add_executable(nonogramme main.c
         console/console.c
         console/console.h
+        console/console-internal.h
 
         repository/nonogramfile.c
         repository/nonogramfile.h

@@ -3,7 +3,7 @@ struct Dimension {
     unsigned char width
     unsigned char height
 
-    - Dimension* createDimension(unsigned char width, unsigned char height)
+    - Dimension* createDimension(const unsigned char width, const unsigned char height)
     - void deleteDimension(Dimension* dimension)
 }
 
@@ -15,8 +15,8 @@ struct ConstraintCell {
     Constraint constraint
     ConstraintCell* next
 
-    - ConstraintCell* createConstraintCell(char adjacentBlack)
-    - void deleteConstraintCell(ConstraintCell* cell)
+    - ConstraintCell* createConstraintCell(const Constraint constraint)
+    - void deleteConstraintCell(ConstraintCell* constraintCell)
 }
 
 struct Constraints {
@@ -24,9 +24,9 @@ struct Constraints {
 
     - Constraints* createConstraints()
     - void deleteConstraints(Constraints* constraints)
-    - void constraintsAddConstraint(Constraints* constraints, char adjacentBlack)
-    - unsigned char constraintsGetSize(Constraints* constraints)
-    - unsigned char* constraintsToArray(Constraints* constraints)
+    - void ConstraintsAddConstraints(Constraints* contraints, const Constraint constraint)
+    - unsigned char constraintsGetSize(const Constraints* constraints)
+    - unsigned char* constraintsToArray(const Constraints* constraints)
 }
 
 enum Pixel {
@@ -36,30 +36,33 @@ enum Pixel {
 
 struct Grid {
     Pixel** pixels
-    - Grid* createGrid(Dimension* dimension)
-    - void deleteGrid(Grid* grid)
-    - void gridToggleXY(Grid* grid, unsigned char x, unsigned char y)
-    - Pixel gridGetXY(Grid* grid, unsigned char x, unsigned char y)
+
+    - Grid createGrid(const Dimension* dimension)
+    - void deleteGrid(Grid grid, const Dimension* dimension)
+    - void gridToggleXY(Grid grid, const unsigned char x, const unsigned char y, const Dimension* dimension)
+    - Pixel gridGetXY(Grid grid, const unsigned char x, const unsigned char y, const Dimension* dimension)
 }
 
 struct Nonogram {
-    Dimension dimension
-    Constraints* rows
-    Constraints* columns
+    Dimension* dimension
     Grid grid
-    + Nonogram* createNonogram(unsigned char width, unsigned char height)
+    Constraints** rowConstraints
+    Constraints** columnConstraints
+
+    + Nonogram* createNonogram(const unsigned char width, const unsigned char height)
     + void deleteNonogram(Nonogram* nonogram)
-    + void nonogramAddRowConstraint(Nonogram* nonogram, unsigned char index, unsigned char adjacentBlack)
-    + void nonogramAddColumnConstraint(Nonogram* nonogram, unsigned char index, unsigned char adjacentBlack)
-    + unsigned char nonogramGetWidth(Nonogram* nonogram)
-    + unsigned char nonogramGetHeight(Nonogram* nonogram)
-    + void nonogramToggleXY(Nonogram* nonogram, unsigned char x, unsigned char y)
-    + Pixel nonogramGetXY(Nonogram* nonogram, unsigned char x, unsigned char y)
-    + unsigned char nonogramRowsConstraintsGetSize(Nonogram* nonogram, unsigned char rowIndex)
-    + unsigned char nonogramColumnsConstraintsGetSize(Nonogram* nonogram, unsigned char columnIndex)
-    + unsigned char* nonogramRowsConstraintsToArray(Nonogram* nonogram, unsigned char rowIndex)
-    + unsigned char* nonogramColumnsConstraintsToArray(Nonogram* nonogram, unsigned char columnIndex)
+    + void nonogramAddRowConstraint(const Nonogram* nonogram, const unsigned char rowIndex, const Constraint constraint)
+    + void nonogramAddColumnConstraint(const Nonogram* nonogram, const unsigned char columnIndex, const Constraint constraint)
+    + unsigned char nonogramGetWidth(const Nonogram* nonogram)
+    + unsigned char nonogramGetHeight(const Nonogram* nonogram)
+    + void nonogramToggleXY(const Nonogram* nonogram, const unsigned char x, const unsigned char y)
+    + Pixel nonogramGetXY(const Nonogram* nonogram, const unsigned char x, const unsigned char y)
+    + unsigned char nonogramRowsConstraintsGetSize(const Nonogram* nonogram, const unsigned char rowIndex)
+    + unsigned char nonogramColumnsConstraintsGetSize(const Nonogram* nonogram, const unsigned char columnIndex)
+    + unsigned char* nonogramRowsConstraintsToArray(const Nonogram* nonogram, const unsigned char rowIndex)
+    + unsigned char* nonogramColumnsConstraintsToArray(const Nonogram* nonogram, const unsigned char columnIndex)
 }
+
 Nonogram *--> Dimension
 Nonogram o--> "2" Constraints
 Nonogram *--> Grid

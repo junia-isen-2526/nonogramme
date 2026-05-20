@@ -35,20 +35,20 @@ void deleteConstraints(Constraints *constraints) {
 	}
 }
 
-void ConstraintsRecursiveAddConstraints(ConstraintCell *head, Constraint constraint) {
+void constraintsRecursiveAddConstraints(ConstraintCell *head, Constraint constraint) {
 	if (head->next == NULL) {
 		head->next = createConstraintCell(constraint);
 	} else {
-		ConstraintsRecursiveAddConstraints(head->next, constraint);
+		constraintsRecursiveAddConstraints(head->next, constraint);
 	}
 }
 
-void ConstraintsAddConstraints(Constraints *contraints, const Constraint constraint) {
-	if (contraints != NULL) {
-		if (contraints->head == NULL) {
-			contraints->head = createConstraintCell(constraint);
+void constraintsAddConstraint(Constraints *constraints, const Constraint constraint) {
+	if (constraints != NULL) {
+		if (constraints->head == NULL) {
+			constraints->head = createConstraintCell(constraint);
 		} else {
-			ConstraintsRecursiveAddConstraints(contraints->head, constraint);
+			constraintsRecursiveAddConstraints(constraints->head, constraint);
 		}
 	}
 }
