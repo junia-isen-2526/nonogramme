@@ -1,0 +1,68 @@
+@startuml
+
+
+package entity {
+    file "constraint.h"
+    file "constraint-internal.h"
+    file "constraint.c"
+    "constraint.c" -[dotted]-> "constraint-internal.h" : include
+    "constraint-internal.h" -[dotted]-> "constraint.h" : include
+
+    file "constraints.h"
+    file "constraints-internals.h"
+    file "constraints.c"
+    "constraints.c" -[dotted]-> "constraints-internals.h" : include
+    "constraints-internals.h" -[dotted]-> "constraints.h" : include
+    "constraints.h" -[dotted]-> "constraint.h" : include
+
+    file "dimension.h"
+    file "dimension-internals.h"
+    file "dimension.c"
+    "dimension.c" -[dotted]-> "dimension-internals.h" : include
+    "dimension-internals.h" -[dotted]-> "dimension.h" : include
+
+    file "pixel.h"
+    file "pixel-internals.h"
+    file "pixel.c"
+    "pixel.c" -[dotted]-> "pixel-internals.h" : include
+    "pixel-internals.h" -[dotted]-> "pixel.h" : include
+
+    file "grid.h"
+    file "grid-internals.h"
+    file "grid.c"
+    "grid.c" -[dotted]-> "grid-internals.h" : include
+    "grid-internals.h" -[dotted]-> "grid.h" : include
+    "grid.h" -[dotted]-> "pixel.h" : include
+
+    file "nonogram.h"
+    file "nonogram-internals.h"
+    file "nonogram.c"
+    "nonogram.c" -[dotted]-> "nonogram-internals.h" : include
+    "nonogram-internals.h" -[dotted]-> "nonogram.h" : include
+    "nonogram.h" -[dotted]-> "dimension.h" : include
+    "nonogram.h" -[dotted]-> "grid.h" : include
+    "nonogram.h" -[dotted]-> "constraints.h" : include
+}
+
+package repository {
+    file nonogramfile.h
+    file nonogramfile.c
+    "nonogramfile.c" -[dotted]-> "nonogramfile.h" : include
+    "nonogramfile.h" -[dotted]-> "nonogram.h" : include
+}
+
+package console {
+    file console.h
+    file console.c
+    "console.c" -[dotted]-> "console.h" : include
+}
+
+package service {
+    file nonogramservice.h
+    file nonogramservice.c
+    "nonogramservice.c" -[dotted]-> "nonogramfile.h" : include
+    "nonogramservice.h" -[dotted]-> "nonogram.h" : include
+    "nonogramservice.h" -[dotted]-> "nonogramfile.h" : include
+}
+
+@enduml
