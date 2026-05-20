@@ -54,7 +54,7 @@ void deleteNonogram(Nonogram *nonogram) {
 
 void nonogramAddRowConstraint(const Nonogram *nonogram, const unsigned char rowIndex, const Constraint constraint) {
 	if ((nonogram != NULL) && (rowIndex < nonogram->dimension->height)) {
-		ConstraintsAddConstraints(nonogram->rowConstraints[rowIndex], constraint);
+		constraintsAddConstraint(nonogram->rowConstraints[rowIndex], constraint);
 	}
 }
 
@@ -62,7 +62,7 @@ void nonogramAddColumnConstraint(const Nonogram *nonogram,
                                  const unsigned char columnIndex,
                                  const Constraint constraint) {
 	if ((nonogram != NULL) && (columnIndex < nonogram->dimension->width)) {
-		ConstraintsAddConstraints(nonogram->columnConstraints[columnIndex], constraint);
+		constraintsAddConstraint(nonogram->columnConstraints[columnIndex], constraint);
 	}
 }
 

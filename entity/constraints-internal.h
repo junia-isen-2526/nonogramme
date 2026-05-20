@@ -13,7 +13,7 @@ void deleteConstraintCell(ConstraintCell *constraintCell);
 
 Constraints *createConstraints();
 void deleteConstraints(Constraints *constraints);
-void ConstraintsAddConstraints(Constraints *contraints, Constraint constraint);
+void constraintsAddConstraint(Constraints *contraints, Constraint constraint);
 unsigned char constraintsGetSize(const Constraints *constraints);
 unsigned char *constraintsToArray(const Constraints *constraints);
 
