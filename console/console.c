@@ -48,20 +48,20 @@ void displayNonogramWithConstraints(const Nonogram *nonogram) {
 	const unsigned char columnConstraintsMax = getMaxConstraintsColumnFromNonogram(nonogram, width);
 	const unsigned char rowConstraintsMax = getMaxConstraintsRowFromNonogram(nonogram, height);
 
-	unsigned char **columnConstraints = malloc(sizeof(unsigned char) * width);
+	unsigned char **columnConstraintsArray = malloc(sizeof(unsigned char *) * width);
 	unsigned char *columnConstraintsSize = malloc(sizeof(unsigned char) * width);
 
 	for (unsigned char column = 0; column < width; column++) {
-		columnConstraints[column] = nonogramColumnsConstraintsToArray(nonogram, column);
+		columnConstraintsArray[column] = nonogramColumnsConstraintsToArray(nonogram, column);
 		columnConstraintsSize[column] = nonogramColumnsConstraintsGetSize(nonogram, column);
 	}
 	for (unsigned char constraintIndex = 0; constraintIndex < columnConstraintsMax; constraintIndex++) {
 		printf("%*s| ", rowConstraintsMax * 3, "");
 		for (unsigned char column = 0; column < width; column++) {
 			if (constraintIndex >= columnConstraintsMax - columnConstraintsSize[column]) {
-				printf("%2d ",
-				       columnConstraints[column]
-				       [constraintIndex - columnConstraintsMax + columnConstraintsSize[column]]);
+				const unsigned char temp = columnConstraintsArray[column]
+					[constraintIndex - columnConstraintsMax + columnConstraintsSize[column]];
+				printf("%2d ", temp);
 			} else {
 				printf("   ");
 			}
@@ -69,9 +69,9 @@ void displayNonogramWithConstraints(const Nonogram *nonogram) {
 		printf("\n");
 	}
 	for (unsigned char column = 0; column < width; column++) {
-		free(columnConstraints[column]);
+		if (columnConstraintsArray[column] != NULL) free(columnConstraintsArray[column]);
 	}
-	free(columnConstraints);
+	free(columnConstraintsArray);
 	free(columnConstraintsSize);
 
 	for (unsigned char row = 0; row < height; row++) {

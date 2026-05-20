@@ -10,5 +10,7 @@ int main(void) {
 
     deleteNonogram(nonogram);
 
+    // system("pause");
+
     return 0;
 }
