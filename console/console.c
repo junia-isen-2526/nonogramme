@@ -61,9 +61,9 @@ void displayNonogramWithConstraints(const Nonogram *nonogram) {
 			if (constraintIndex >= columnConstraintsMax - columnConstraintsSize[column]) {
 				const unsigned char temp = columnConstraintsArray[column]
 					[constraintIndex - columnConstraintsMax + columnConstraintsSize[column]];
-				printf("%2d ", temp);
+				printf("%2d|", temp);
 			} else {
-				printf("   ");
+				printf("  |");
 			}
 		}
 		printf("\n");
@@ -73,6 +73,12 @@ void displayNonogramWithConstraints(const Nonogram *nonogram) {
 	}
 	free(columnConstraintsArray);
 	free(columnConstraintsSize);
+
+	printf("%*s+ ", rowConstraintsMax * 3, "");
+	for (unsigned char column = 0; column < width; column++) {
+		printf("--+");
+	}
+	printf("\n");
 
 	for (unsigned char row = 0; row < height; row++) {
 		unsigned char *constraintsRowsArray = nonogramRowsConstraintsToArray(nonogram, row);
