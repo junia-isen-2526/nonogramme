@@ -7,5 +7,6 @@ int main(void) {
     Nonogram *nonogram = loadNonogramFromFile("../doc/jad.nono");
     displayNonogram(nonogram);
     deleteNonogram(nonogram);
+
     return 0;
 }

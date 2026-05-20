@@ -14,7 +14,7 @@ void displayNonogram(const Nonogram *nonogram) {
 	for (unsigned char row = 0; row < height; row++) {
 		for (unsigned char column = 0; column < weight; column++) {
 			Pixel pixel = nonogramGetXY(nonogram, column, row);
-			printf("%c ", pixel == BLACK ? '#' : ' ');
+			printf("%c", pixel == BLACK ? 219 : ' ');
 		}
 		printf("\n");
 	}
