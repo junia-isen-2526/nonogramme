@@ -2,8 +2,8 @@
 // Created by JAD on 18/05/2026.
 //
 
-#ifndef NONOGRAMME_NONOGRAMMEFILE_H
-#define NONOGRAMME_NONOGRAMMEFILE_H
+#ifndef NONOGRAMME_NONOGRAMFILE_H
+#define NONOGRAMME_NONOGRAMFILE_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,4 +14,4 @@ Nonogram *loadNonogramFromFile(const char *filename);
 
 int saveNonogramToFile(const char *filename, const Nonogram *nonogram);
 
-#endif //NONOGRAMME_NONOGRAMMEFILE_H
+#endif //NONOGRAMME_NONOGRAMFILE_H

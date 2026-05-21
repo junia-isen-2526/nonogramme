@@ -4,7 +4,7 @@
 #include "console/console.h"
 
 int main(void) {
-    Nonogram *nonogram = loadNonogramFromFile("../doc/7.nono");
+    Nonogram *nonogram = loadNonogramFromFile("../doc/9.nono");
 
     displayNonogramWithConstraints(nonogram);
     displayNonogram(nonogram);
