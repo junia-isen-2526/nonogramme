@@ -4,9 +4,10 @@
 #include "console/console.h"
 
 int main(void) {
-    Nonogram *nonogram = loadNonogramFromFile("../doc/jad.nono");
+    Nonogram *nonogram = loadNonogramFromFile("../doc/9.nono");
 
     displayNonogramWithConstraints(nonogram);
+    displayNonogram(nonogram);
 
     deleteNonogram(nonogram);
 
