@@ -39,8 +39,10 @@ void fillAllVerifiable(const Nonogram *nonogram,
                        GridSolver gridSolver,
                        unsigned char width,
                        unsigned char height) {
-	fillAllVerifiableRows(nonogram, gridSolver, width, height);
-	fillAllVerifiableColumns(nonogram, gridSolver, width, height);
+	for (unsigned char i = 0; i < 2; i++) {
+		fillAllVerifiableRows(nonogram, gridSolver, width, height);
+		fillAllVerifiableColumns(nonogram, gridSolver, width, height);
+	}
 }
 
 void fillAllVerifiableRows(const Nonogram *nonogram,
@@ -49,6 +51,7 @@ void fillAllVerifiableRows(const Nonogram *nonogram,
                            unsigned char height) {
 	for (unsigned char rowIndex = 0; rowIndex < height; rowIndex++) {
 		fillVerifiableRow(nonogram, gridSolver, width, rowIndex);
+		fillVerifiableRowWithMissingBlack(nonogram, gridSolver, width, rowIndex);
 	}
 }
 
@@ -58,6 +61,7 @@ void fillAllVerifiableColumns(const Nonogram *nonogram,
                               unsigned char height) {
 	for (unsigned char columnIndex = 0; columnIndex < width; columnIndex++) {
 		fillVerifiableColumn(nonogram, gridSolver, height, columnIndex);
+		fillVerifiableColumnWithMissingBlack(nonogram, gridSolver, height, columnIndex);
 	}
 }
 
@@ -100,8 +104,10 @@ void fillVerifiableRow(const Nonogram *nonogram,
 			for (unsigned char blackCounter = 0; blackCounter < rowConstraints[constraintIndex]; blackCounter++) {
 				gridSolver[rowIndex][columnIndex + blackCounter] = VERIFIED_BLACK;
 			}
-			columnIndex += rowConstraints[constraintIndex++] + 1;
-			if (columnIndex < width) gridSolver[rowIndex][columnIndex] = VERIFIED_WHITE;
+			columnIndex += rowConstraints[constraintIndex++];
+			if (columnIndex < width) {
+				gridSolver[rowIndex][columnIndex++] = VERIFIED_WHITE;
+			}
 		}
 	}
 	free(rowConstraints);
@@ -136,11 +142,55 @@ void fillVerifiableColumn(const Nonogram *nonogram,
 			for (unsigned char blackCounter = 0; blackCounter < columnConstraints[constraintIndex]; blackCounter++) {
 				gridSolver[rowIndex + blackCounter][columnIndex] = VERIFIED_BLACK;
 			}
-			rowIndex += columnConstraints[constraintIndex++] + 1;
-			if (rowIndex < height) gridSolver[rowIndex][columnIndex] = VERIFIED_WHITE;
+			rowIndex += columnConstraints[constraintIndex++];
+			if (rowIndex < height) gridSolver[rowIndex++][columnIndex] = VERIFIED_WHITE;
 		}
 	}
 	free(columnConstraints);
+}
+
+void fillVerifiableRowWithMissingBlack(const Nonogram *nonogram,
+                                       GridSolver gridSolver,
+                                       unsigned char width,
+                                       unsigned char rowIndex) {
+	if (gridSolver == NULL) return;
+	unsigned char rowConstraintsSize = nonogramRowsConstraintsGetSize(nonogram, rowIndex);
+	unsigned char *rowConstraints = nonogramRowsConstraintsToArray(nonogram, rowIndex);
+	unsigned char blacksTotalCount = 0;
+	unsigned char unknownsCount = 0;
+	for (unsigned constraintIndex = 0; constraintIndex < rowConstraintsSize; constraintIndex++) {
+		blacksTotalCount += rowConstraints[constraintIndex];
+	}
+	for (unsigned columnIndex = 0; columnIndex < width; columnIndex++) {
+		unknownsCount += gridSolver[rowIndex][columnIndex] == UNKNOWN;
+	}
+	if (blacksTotalCount == unknownsCount) {
+		for (unsigned columnIndex = 0; columnIndex < width; columnIndex++) {
+			gridSolver[rowIndex][columnIndex] = VERIFIED_BLACK;
+		}
+	}
+}
+
+void fillVerifiableColumnWithMissingBlack(const Nonogram *nonogram,
+                                          GridSolver gridSolver,
+                                          unsigned char height,
+                                          unsigned char columnIndex) {
+	if (gridSolver == NULL) return;
+	unsigned char columnConstraintsSize = nonogramColumnsConstraintsGetSize(nonogram, columnIndex);
+	unsigned char *columnConstraints = nonogramColumnsConstraintsToArray(nonogram, columnIndex);
+	unsigned char blacksTotalCount = 0;
+	unsigned char unknownsCount = 0;
+	for (unsigned constraintIndex = 0; constraintIndex < columnConstraintsSize; constraintIndex++) {
+		blacksTotalCount += columnConstraints[constraintIndex];
+	}
+	for (unsigned rowIndex = 0; rowIndex < height; rowIndex++) {
+		unknownsCount += gridSolver[rowIndex][columnIndex] == UNKNOWN;
+	}
+	if (blacksTotalCount == unknownsCount) {
+		for (unsigned rowIndex = 0; rowIndex < height; rowIndex++) {
+			gridSolver[rowIndex][columnIndex] = VERIFIED_BLACK;
+		}
+	}
 }
 
 void gridSolverToNonogramGrid(const Nonogram *nonogram, GridSolver gridSolver) {

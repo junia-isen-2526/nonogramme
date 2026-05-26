@@ -29,6 +29,18 @@ void fillVerifiableColumn(const Nonogram *nonogram,
                           GridSolver gridSolver,
                           unsigned char height,
                           unsigned char columnIndex);
+void fillVerifiableRowWithMissingBlack(const Nonogram *nonogram,
+                                       GridSolver gridSolver,
+                                       unsigned char width,
+                                       unsigned char rowIndex);
+void fillVerifiableColumnWithMissingBlack(const Nonogram *nonogram,
+                                          GridSolver gridSolver,
+                                          unsigned char height,
+                                          unsigned char columnIndex);
+
+int sumOfAllConstraintsPlusEmptyEqualsSize(const unsigned char *constraints,
+                                           unsigned char constraintsSize,
+                                           unsigned char size);
 void gridSolverToNonogramGrid(const Nonogram *nonogram, GridSolver gridSolver);
 
 #endif //NONOGRAMME_SERVICE_NONOGRAMME_SOLVE_INTERNAL_H
