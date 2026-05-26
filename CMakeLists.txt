@@ -11,8 +11,10 @@ add_executable(nonogramme main.c
         repository/nonogramfile.c
         repository/nonogramfile.h
 
-        service/nonogrammeservice.c
-        service/nonogrammeservice.h
+        service/service_correctly_filed.c
+        service/service_correctly_filed.h
+        service/service_nonogramme_valid.c
+        service/service_nonogramme_valid.h
 
         entity/dimension.c
         entity/dimension.h
