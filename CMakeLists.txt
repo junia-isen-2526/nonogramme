@@ -13,8 +13,11 @@ add_executable(nonogramme main.c
 
         service/service_correctly_filed.c
         service/service_correctly_filed.h
-        service/service_nonogramme_valid.c
-        service/service_nonogramme_valid.h
+        service/service_nonogram_valid.c
+        service/service_nonogram_valid.h
+        service/service_nonogram_solve.c
+        service/service_nonogram_solve-internal.h
+        service/service_nonogram_solve.h
 
         entity/dimension.c
         entity/dimension.h
@@ -39,4 +42,6 @@ add_executable(nonogramme main.c
         entity/nonogram.c
         entity/nonogram.h
         entity/nonogram-internal.h
+        service/service_nonogram_solve.c
+        service/service_nonogram_solve.h
 )

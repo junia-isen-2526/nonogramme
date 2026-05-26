@@ -2,7 +2,7 @@
 // Created by JAD on 18/05/2026.
 //
 
-#include "../service/service_nonogramme_valid.h"
+#include "../service/service_nonogram_valid.h"
 
 unsigned char isNonogramBlackRowsEqualsBlackColumn(const Nonogram *nonogram) {
 	unsigned char blackRowsCount = 0;
@@ -93,4 +93,10 @@ unsigned char isNonogramAllConstraintsContainsOneZeroOrNone(const Nonogram *nono
 	}
 
 	return 1;
+}
+
+unsigned char isNonogramValid(const Nonogram *nonogram) {
+	return isNonogramEachConstraintsLessOrEqualsThanDimension(nonogram) &&
+		isNonogramAllConstraintsContainsOneZeroOrNone(nonogram) &&
+		isNonogramBlackRowsEqualsBlackColumn(nonogram);
 }
