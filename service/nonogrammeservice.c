@@ -192,6 +192,6 @@ unsigned char isNonogramAllColumnsCorrectlyFilled(const Nonogram *nonogram) {
 }
 
 char isNonogramCorrectlyFilled(const Nonogram *nonogram) {
-	char result = 0 + isNonogramAllRowsCorrectlyFilled(nonogram);
-	return (result != 0) ? result : (0 - isNonogramAllColumnsCorrectlyFilled(nonogram));
+	const char result = 0 + isNonogramAllRowsCorrectlyFilled(nonogram);
+	return (result != 0) ? result : (char)(0 - isNonogramAllColumnsCorrectlyFilled(nonogram));
 }
