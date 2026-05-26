@@ -18,10 +18,17 @@ typedef PixelSolver **GridSolver;
 GridSolver createUnknownGridSolver(unsigned char width, unsigned char height);
 void deleteGridSolver(GridSolver gridSolver, unsigned char height);
 
-void fillAllVerifiable(GridSolver grid_solver, unsigned char width, unsigned char height);
-void fillAllVerifiableRows(GridSolver grid_solver, unsigned char width, unsigned char height);
-void fillAllVerifiableColumns(GridSolver grid_solver, unsigned char width, unsigned char height);
-void fillVerifiableRow(GridSolver grid_solver, unsigned char width, unsigned char rowIndex);
-void fillVerifiableColumn(GridSolver grid_solver, unsigned char height, unsigned char columnIndex);
+void fillAllVerifiable(const Nonogram *nonogram, GridSolver gridSolver, unsigned char width, unsigned char height);
+void fillAllVerifiableRows(const Nonogram *nonogram, GridSolver gridSolver, unsigned char width, unsigned char height);
+void fillAllVerifiableColumns(const Nonogram *nonogram,
+                              GridSolver gridSolver,
+                              unsigned char width,
+                              unsigned char height);
+void fillVerifiableRow(const Nonogram *nonogram, GridSolver gridSolver, unsigned char width, unsigned char rowIndex);
+void fillVerifiableColumn(const Nonogram *nonogram,
+                          GridSolver gridSolver,
+                          unsigned char height,
+                          unsigned char columnIndex);
+void gridSolverToNonogramGrid(const Nonogram *nonogram, GridSolver gridSolver);
 
 #endif //NONOGRAMME_SERVICE_NONOGRAMME_SOLVE_INTERNAL_H
