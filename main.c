@@ -2,16 +2,29 @@
 #include "entity/nonogram.h"
 #include "repository/nonogramfile.h"
 #include "console/console.h"
+#include "service/service_correctly_filed.h"
+#include "service/service_nonogramme_valid.h"
 
 int main(void) {
-    Nonogram *nonogram = loadNonogramFromFile("../doc/9.nono");
+	Nonogram *nonogram = loadNonogramFromFile("../doc/4.nono");
 
-    displayNonogramWithConstraints(nonogram);
-    displayNonogram(nonogram);
+	displayNonogramWithConstraints(nonogram);
+	// displayNonogram(nonogram);
 
-    deleteNonogram(nonogram);
+	printf("%d\n", isNonogramBlackRowsEqualsBlackColumn(nonogram));
 
-    // system("pause");
+	printf("%d\n", isNonogramEachConstraintsLessOrEqualsThanDimension(nonogram));
 
-    return 0;
+	printf("%d\n", isNonogramAllConstraintsContainsOneZeroOrNone(nonogram));
+
+	printf("%d\n", isNonogramRowCorrectlyFilled(nonogram, 10));
+	printf("%d\n", isNonogramAllRowsCorrectlyFilled(nonogram));
+
+	printf("%d\n", isNonogramCorrectlyFilled(nonogram));
+
+	deleteNonogram(nonogram);
+
+	// system("pause");
+
+	return 0;
 }
