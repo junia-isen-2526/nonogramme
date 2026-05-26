@@ -8,6 +8,7 @@
 #include "../entity/nonogram.h"
 #include "stdlib.h"
 
+unsigned char isNonogramValid(const Nonogram *nonogram);
 unsigned char isNonogramBlackRowsEqualsBlackColumn(const Nonogram *nonogram);
 unsigned char isNonogramEachConstraintsLessOrEqualsThanDimension(const Nonogram *nonogram);
 unsigned char isNonogramAllConstraintsContainsOneZeroOrNone(const Nonogram *nonogram);
